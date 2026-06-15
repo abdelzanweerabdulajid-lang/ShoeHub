@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShoeHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Shoe<span>Hub</span></div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search shoes, brands...">
+        <button type="button" onclick="searchProduct()">Search</button>
+        <span id="searchMessage" class="search-message"></span>
+    </div>
+
+    <div class="nav-buttons"></div>
+    <button id="themeToggle" class="theme-toggle" type="button">Light</button>
+    <div class="cart-badge">Cart: <span id="cart-count">0</span></div>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Step Into Style and Comfort</h1>
+        <p>
+            Discover running shoes, basketball shoes,
+            casual sneakers, training shoes, and more.
+        </p>
+
+        <button class="primary" onclick="document.querySelector('.products').scrollIntoView()">
+            Shop Best Sellers
+        </button>
+
+        <button onclick="document.querySelector('.categories').scrollIntoView()">
+            Browse Categories
+        </button>
+    </div>
+
+    <div class="hero-image">
+        <img src="images/banner.jpg" alt="Stylish shoes">
+
+    </div>
+</section>
+
+<section class="categories">
+    <h2>Categories</h2>
+
+    <div class="category-grid">
+
+        <div class="card">
+            <img src="images/shoes.avif" alt="Running Shoes">
+            <h3>Running Shoes</h3>
+            <p>Lightweight footwear for runners.</p>
+        </div>
+
+        <div class="card">
+            <img src="images/basketball-shoes.jpg" alt="Basketball Shoes">
+            <h3>Basketball Shoes</h3>
+            <p>Built for performance on the court.</p>
+        </div>
+
+        <div class="card">
+            <img src="images/casual-shoes.avif" alt="Casual Sneakers">
+            <h3>Casual Sneakers</h3>
+            <p>Comfortable and stylish daily wear.</p>
+        </div>
+
+        <div class="card">
+            <img src="images/training-shoes.avif" alt="Training Shoes">
+            <h3>Training Shoes</h3>
+            <p>Perfect for gym workouts and training.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="product-controls card">
+    <div class="filter-row">
+        <div class="filter-group">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+                <option value="All">All</option>
+                <option value="Running">Running</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Casual">Casual</option>
+                <option value="Training">Training</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="minPriceFilter">Min Price</label>
+            <input id="minPriceFilter" type="number" placeholder="0">
+        </div>
+        <div class="filter-group">
+            <label for="maxPriceFilter">Max Price</label>
+            <input id="maxPriceFilter" type="number" placeholder="10000">
+        </div>
+        <div class="filter-group">
+            <label for="sortFilter">Sort</label>
+            <select id="sortFilter">
+                <option value="name-asc">Name A-Z</option>
+                <option value="name-desc">Name Z-A</option>
+                <option value="price-asc">Price Low-High</option>
+                <option value="price-desc">Price High-Low</option>
+            </select>
+        </div>
+        <div class="filter-group filter-action">
+            <button type="button" id="clearFilters">Clear</button>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <h2>Browse Our Shoe Collection</h2>
+
+    <div class="product-grid">
+
+        <div class="product-card" data-category="Running" data-price="7999">
+            <img src="images/nike-air-max.avif" alt="Nike Air Max 270">
+            <h3>Nike Air Max 270</h3>
+            <p>Comfortable lifestyle sneaker with Air cushioning.</p>
+            <h4>₱7,999</h4>
+
+            <div class="product-actions">
+                <button class="buy-btn" onclick="buyNow('Nike Air Max 270', 7999)">
+                    Buy Now
+                </button>
+
+                <button class="cart-btn" onclick="addToCart('Nike Air Max 270', 7999, this)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="Running" data-price="8499">
+            <img src="images/adidas-ultraboost.avif" alt="Adidas Ultraboost">
+            <h3>Adidas Ultraboost 5</h3>
+            <p>Premium running shoe with responsive cushioning.</p>
+            <h4>₱8,499</h4>
+
+            <div class="product-actions">
+                <button class="buy-btn" onclick="buyNow('Adidas Ultraboost 5', 8499)">
+                    Buy Now
+                </button>
+
+                <button class="cart-btn" onclick="addToCart('Adidas Ultraboost 5', 8499, this)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="Casual" data-price="5999">
+            <img src="images/puma-rsx.jpg" alt="Puma RS-X">
+            <h3>Puma RS-X</h3>
+            <p>Bold design with superior comfort.</p>
+            <h4>₱5,999</h4>
+
+            <div class="product-actions">
+                <button class="buy-btn" onclick="buyNow('Puma RS-X', 5999)">
+                    Buy Now
+                </button>
+
+                <button class="cart-btn" onclick="addToCart('Puma RS-X', 5999, this)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="Casual" data-price="4999">
+            <img src="images/newbalance-574.jpg" alt="New Balance 574">
+            <h3>New Balance 574</h3>
+            <p>Classic sneaker with timeless style.</p>
+            <h4>₱4,999</h4>
+
+            <div class="product-actions">
+                <button class="buy-btn" onclick="buyNow('New Balance 574', 4999)">
+                    Buy Now
+                </button>
+
+                <button class="cart-btn" onclick="addToCart('New Balance 574', 4999, this)">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="testimonials card">
+    <h2>What customers say about ShoeHub</h2>
+    <p>"These shoes are incredibly comfortable and look amazing." — Ana, runner</p>
+    <p>"Perfect fit, great support, and fast delivery." — Mark, sneakerhead</p>
+    <p>"I love the style and quality. I keep coming back for more." — Celeste, gym enthusiast</p>
+</section>
+
+<section class="checkout-panel card">
+    <div class="checkout-preview">
+        <section class="profile panel-card">
+            <h2>User Profile</h2>
+            <p class="panel-note">Save your display name for checkout and order confirmation.</p>
+            <input type="text" id="username" placeholder="Enter Name">
+            <button onclick="saveProfile()">Save Profile</button>
+        </section>
+
+        <section class="cart panel-card">
+            <div class="cart-header">
+                <div>
+                    <h2>Shopping Cart</h2>
+                    <p id="cart-status">Add a product to get started.</p>
+                </div>
+                <span class="cart-count">Items: <strong id="cart-count-display">0</strong></span>
+            </div>
+            <ul id="cart-items"></ul>
+            <div class="cart-total">
+                <span>Total</span>
+                <strong>₱<span id="total">0</span></strong>
+            </div>
+        </section>
+    </div>
+
+    <section class="payment panel-card">
+        <h2>Mode of Payment</h2>
+        <p class="panel-note">Choose how you want to pay for your new shoes.</p>
+        <select id="payment">
+            <option>GCash</option>
+            <option>Maya</option>
+            <option>Cash on Delivery</option>
+            <option>Bank Transfer</option>
+        </select>
+        <div class="checkout-actions">
+            <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+        </div>
+    </section>
+</section>
+
+<section id="checkoutPrompt" class="checkout-prompt" style="display:none;">
+    <div class="prompt-copy">
+        <p>Item added to the bag.</p>
+        <strong id="promptItemCount">Ready to checkout?</strong>
+    </div>
+    <button class="checkout-btn" type="button" onclick="goToCheckout()">Go to Checkout</button>
+</section>
+
+<section class="newsletter">
+    <h2>Join the ShoeHub Mailing List</h2>
+
+    <input type="email" id="email" placeholder="Enter your email">
+    <button onclick="subscribe()">Subscribe</button>
+</section>
+
+<footer>
+    <div>
+        <h3>ShoeHub</h3>
+        <p>Your destination for premium footwear.</p>
+    </div>
+
+    <div>
+        <h3>Customer Service</h3>
+        <p>Help Center</p>
+        <p>Shipping</p>
+        <p>Returns</p>
+    </div>
+
+    <div>
+        <h3>Contact</h3>
+        <p>support@shoehub.com</p>
+        <p>+63 975 5236 192</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

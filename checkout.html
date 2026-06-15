@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShoeHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Shoe<span>Hub</span></div>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search shoes, brands...">
+        <button type="button" onclick="searchProduct()">Search</button>
+        <span id="searchMessage" class="search-message"></span>
+    </div>
+    <div class="nav-buttons"></div>
+    <button id="themeToggle" class="theme-toggle" type="button">Light</button>
+    <div class="cart-badge">Cart: <span id="cart-count">0</span></div>
+</header>
+
+<main class="checkout-page">
+    <section class="checkout-intro card">
+        <h1>Checkout</h1>
+        <p>Review your order, choose your payment method, and place your shoe order with confidence.</p>
+    </section>
+
+    <div class="checkout-grid">
+        <section class="cart card">
+            <h2>Shopping Cart</h2>
+            <div class="cart-list-wrapper">
+                <ul id="cart-items"></ul>
+                <p class="empty-cart" style="display:none;">Your cart is empty. Add shoes from the shop to begin.</p>
+            </div>
+            <div class="cart-total">
+                <span>Total</span>
+                <strong>₱<span id="total">0.00</span></strong>
+            </div>
+        </section>
+
+        <section class="profile card">
+            <h2>User Profile</h2>
+            <label for="username">Full name</label>
+            <input type="text" id="username" placeholder="Enter your name">
+            <button type="button" onclick="saveProfile()">Save Profile</button>
+        </section>
+    </div>
+
+    <section class="payment card">
+        <h2>Payment Details</h2>
+        <label for="payment">Mode of Payment</label>
+        <select id="payment">
+            <option>GCash</option>
+            <option>Maya</option>
+            <option>Cash on Delivery</option>
+            <option>Bank Transfer</option>
+        </select>
+        <button type="button" class="checkout-btn" onclick="checkout()">Place Shoe Order</button>
+    </section>
+
+    <section class="newsletter card">
+        <h2>Join the ShoeHub Mailing List</h2>
+        <p>Get updates on new sneaker releases, exclusive discounts, and shoe collections.</p>
+        <div class="newsletter-form">
+            <input type="email" id="email" placeholder="Enter your email">
+            <button type="button" onclick="subscribe()">Subscribe</button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div>
+        <h3>ShoeHub</h3>
+        <p>Your trusted online shoe marketplace.</p>
+    </div>
+    <div>
+        <h3>Customer Service</h3>
+        <p>Help Center</p>
+        <p>Shipping Information</p>
+        <p>Returns & Exchanges</p>
+    </div>
+    <div>
+        <h3>Contact</h3>
+        <p>support@shoehub.com</p>
+        <p>+63 975 5236 192</p>
+    </div>
+</footer>
+
+<div id="orderModal" class="modal" style="display:none;">
+    <div class="modal-content order-confirmation">
+        <div class="modal-header">
+            <h2>✓ Order Confirmed</h2>
+            <p>Your order has been placed successfully!</p>
+        </div>
+        <div class="modal-body">
+            <div class="order-section">
+                <h3>Order Summary</h3>
+                <ul id="modalOrderItems"></ul>
+            </div>
+            <div class="order-section">
+                <p><strong>Customer:</strong> <span id="modalCustomerName"></span></p>
+                <p><strong>Payment Method:</strong> <span id="modalPaymentMethod"></span></p>
+            </div>
+            <div class="order-total">
+                <span>Total Amount:</span>
+                <strong>₱<span id="modalTotalAmount">0.00</span></strong>
+            </div>
+            <p class="order-message">Thank you for shopping with ShoeHub! Your shoes will be delivered soon.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn" onclick="closeOrderModal()">Continue Shopping</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", function() {
+        cart = getCart();
+        recalcCart();
+        updateCartUI();
+        loadSavedProfile();
+        renderHeaderState();
+        applyTheme(getStoredTheme());
+        const themeToggle = document.getElementById("themeToggle");
+        if (themeToggle) {
+            themeToggle.addEventListener("click", toggleTheme);
+        }
+    });
+</script>
+</body>
+</html>
