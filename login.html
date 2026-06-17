@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login - ShoeHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Shoe<span>Hub</span></div>
+    <div class="nav-buttons"></div>
+    <button id="themeToggle" class="theme-toggle" type="button">Light</button>
+</header>
+
+<main>
+    <section class="auth-container card auth-card">
+        <div class="auth-header">
+            <span class="welcome-badge">Welcome</span>
+            <h1>Good to see you again.</h1>
+            <p>Sign in to manage your shoes, track orders, and shop the latest drops.</p>
+        </div>
+
+        <form id="loginForm" action="#" method="post" novalidate onsubmit="loginUser(event)">
+            <div class="form-group">
+                <label for="identifier">Email or username</label>
+                <input id="identifier" name="identifier" type="text" placeholder="you@example.com or username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Your password" required>
+            </div>
+
+            <div class="form-group remember-row">
+                <label>
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+                <a class="muted-link" href="#">Forgot password?</a>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="auth-footer">
+            <p>New to ShoeHub? <a href="register.html">Create an account</a></p>
+        </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
